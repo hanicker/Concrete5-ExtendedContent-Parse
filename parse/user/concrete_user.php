@@ -56,9 +56,11 @@ class ExtendedContentParseConcreteUser{
 		);		
 	
 		Loader::helper('concrete/avatar');
+		Loader::model('User');
 		$u=new User();
+		$ui=UserInfo::getByID($u->uID);
 		$av=new ConcreteAvatarHelper();
-		return $av->outputUserAvatar($u);
+		return $av->outputUserAvatar($ui);
 	}		
 	function getUserCustomAttribute(){
 		if(func_num_args()==0) return array(
