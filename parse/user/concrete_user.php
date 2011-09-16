@@ -8,7 +8,7 @@ class ExtendedContentParseConcreteUser{
 			'description'=>t('User ID'),
 		);		
 	
-		Loader::model('User');
+		Loader::model('user');
 		$u=new User();
 		return $u->uID;
 	}
@@ -17,7 +17,7 @@ class ExtendedContentParseConcreteUser{
 			'description'=>t('Username of the user'),
 		);		
 	
-		Loader::model('User');
+		Loader::model('user');
 		$u=new User();
 		return $u->uName;
 	}
@@ -26,8 +26,9 @@ class ExtendedContentParseConcreteUser{
 			'description'=>t('First Name of the user (first_name attribute handle)'),
 		);		
 	
-		Loader::model('User');
+		Loader::model('user');
 		$u=new User();
+		if(empty($u->uid)){ return; }
 		$ui=UserInfo::getByID($u->uID);
 		return $ui->getAttribute('first_name');
 	}	
@@ -36,8 +37,9 @@ class ExtendedContentParseConcreteUser{
 			'description'=>t('Last Name of the user (last_name attribute handle)'),
 		);		
 	
-		Loader::model('User');
+		Loader::model('user');
 		$u=new User();
+		if(empty($u->uid)){ return; }
 		$ui=UserInfo::getByID($u->uID);
 		return $ui->getAttribute('last_name');
 	}		
@@ -46,8 +48,9 @@ class ExtendedContentParseConcreteUser{
 			'description'=>t('Email of the user'),
 		);		
 	
-		Loader::model('User');
+		Loader::model('user');
 		$u=new User();
+		if(empty($u->uid)){ return; }
 		return $u->uEmail;
 	}	
 	function getUserAvatar(){
@@ -56,8 +59,9 @@ class ExtendedContentParseConcreteUser{
 		);		
 	
 		Loader::helper('concrete/avatar');
-		Loader::model('User');
+		Loader::model('user');
 		$u=new User();
+		if(empty($u->uid)){ return; }
 		$ui=UserInfo::getByID($u->uID);
 		$av=new ConcreteAvatarHelper();
 		return $av->outputUserAvatar($ui);
@@ -68,8 +72,9 @@ class ExtendedContentParseConcreteUser{
 			'customonclick'=>ExtendedContentParseInput::getTextInput(t('Insert attribute handle below')),
 		);		
 	
-		Loader::model('User');
+		Loader::model('user');
 		$u=new User();
+		if(empty($u->uid)){ return; }
 		$ui=UserInfo::getByID($u->uID);
 		return $ui->getAttribute(func_get_arg(0));
 	}			
@@ -78,7 +83,7 @@ class ExtendedContentParseConcreteUser{
 			'description'=>t('List of all user groups'),
 		);		
 	
-		Loader::model('User');
+		Loader::model('user');
 		$u=new User();
 		$groups_names=$u->getUserGroups();
 		$count = count($groups_names)-1;
@@ -94,9 +99,10 @@ class ExtendedContentParseConcreteUser{
 			'description'=>t('Last user login date'),
 			'customonclick'=>ExtendedContentParseInput::getDateInput(),
 		);				
-		Loader::model('User');
-		Loader::model('UserInfo');
+		Loader::model('user');
+		Loader::model('userinfo');
 		$u=new User();
+		if(empty($u->uid)){ return; }
 		$time=UserInfo::getByID($u->uID)->uLastLogin;
 		return strftime(func_get_arg(0),$time);
 	}

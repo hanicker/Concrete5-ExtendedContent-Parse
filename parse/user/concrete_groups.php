@@ -8,7 +8,7 @@ class ExtendedContentParseConcreteGroups{
 			'description'=>t('List of all groups'),
 		);		
 	
-		Loader::model('Groups');
+		Loader::model('groups');
 		$groupslist=new GroupList(null,false,true);
 		$groups=$groupslist->getGroupList();
 		$groups_names=array();
