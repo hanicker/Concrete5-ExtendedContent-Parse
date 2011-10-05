@@ -51,7 +51,8 @@ class ExtendedContentParseConcreteUser{
 		Loader::model('user');
 		$u=new User();
 		if(empty($u->uID)){ return; }
-		return $u->uEmail;
+		$ui=UserInfo::getByID($u->uID);
+		return $ui->getUserEmail();
 	}	
 	function getUserAvatar(){
 		if(func_num_args()==0) return array(
