@@ -28,7 +28,7 @@ class ExtendedContentParseConcreteUser{
 	
 		Loader::model('user');
 		$u=new User();
-		if(empty($u->uid)){ return; }
+		if(empty($u->uID)){ return; }
 		$ui=UserInfo::getByID($u->uID);
 		return $ui->getAttribute('first_name');
 	}	
@@ -39,7 +39,7 @@ class ExtendedContentParseConcreteUser{
 	
 		Loader::model('user');
 		$u=new User();
-		if(empty($u->uid)){ return; }
+		if(empty($u->uID)){ return; }
 		$ui=UserInfo::getByID($u->uID);
 		return $ui->getAttribute('last_name');
 	}		
@@ -50,7 +50,7 @@ class ExtendedContentParseConcreteUser{
 	
 		Loader::model('user');
 		$u=new User();
-		if(empty($u->uid)){ return; }
+		if(empty($u->uID)){ return; }
 		return $u->uEmail;
 	}	
 	function getUserAvatar(){
@@ -61,7 +61,7 @@ class ExtendedContentParseConcreteUser{
 		Loader::helper('concrete/avatar');
 		Loader::model('user');
 		$u=new User();
-		if(empty($u->uid)){ return; }
+		if(empty($u->uID)){ return; }
 		$ui=UserInfo::getByID($u->uID);
 		$av=new ConcreteAvatarHelper();
 		return $av->outputUserAvatar($ui);
@@ -74,7 +74,7 @@ class ExtendedContentParseConcreteUser{
 	
 		Loader::model('user');
 		$u=new User();
-		if(empty($u->uid)){ return; }
+		if(empty($u->uID)){ return; }
 		$ui=UserInfo::getByID($u->uID);
 		return $ui->getAttribute(func_get_arg(0));
 	}			
@@ -102,7 +102,7 @@ class ExtendedContentParseConcreteUser{
 		Loader::model('user');
 		Loader::model('userinfo');
 		$u=new User();
-		if(empty($u->uid)){ return; }
+		if(empty($u->uID)){ return; }
 		$time=UserInfo::getByID($u->uID)->uLastLogin;
 		return strftime(func_get_arg(0),$time);
 	}
