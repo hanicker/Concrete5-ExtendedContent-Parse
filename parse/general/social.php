@@ -19,6 +19,8 @@ class ExtendedContentParseSocial{
 		}else if(defined('LOCALE')){
 			$language=LOCALE;
 		}		
+		if($language=='en_EN')
+			$language='en_US';
 		return '
 		<div id="fb-root"></div><script src="http://connect.facebook.net/'.$language.'/all.js#appId=210373152351781&amp;xfbml=1"></script><fb:like href="'.$cpl.'" send="true" width="450" show_faces="false" action="like" font=""></fb:like>
 		';		
@@ -40,6 +42,8 @@ class ExtendedContentParseSocial{
 		}else if(defined('LOCALE')){
 			$language=LOCALE;
 		}
+		if($language=='en_EN')
+			$language='en_US';
 		return '
 		<div id="fb-root"></div><script src="http://connect.facebook.net/'.$language.'/all.js#appId=210373152351781&amp;xfbml=1"></script><fb:like href="'.$cpl.'" send="true" width="450" show_faces="false" action="like" font=""></fb:like>
 		';		
